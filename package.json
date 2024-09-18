@@ -17,7 +17,11 @@
   },
   "packageManager": "npm@10.8.3",
   "workspaces": [
-    "apps/*",
+    "frontend/*",
+    "backend/*",
     "packages/*"
-  ]
+  ],
+  "volta": {
+    "node": "22.9.0"
+  }
 }
