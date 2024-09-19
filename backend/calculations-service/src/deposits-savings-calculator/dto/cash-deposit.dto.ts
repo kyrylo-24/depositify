@@ -1,10 +1,11 @@
-import { IsNumber, IsEnum } from 'class-validator';
+import { IsNumber, IsEnum, IsPositive } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { ExtraDepositFrequency } from 'src/common/types/calculations.types';
 
 export class CashDepositDto {
   @ApiProperty({ description: 'The initial investment amount', example: 10000 })
   @IsNumber()
+  @IsPositive()
   principal: number;
 
   @ApiProperty({
@@ -12,6 +13,7 @@ export class CashDepositDto {
     example: 0.25,
   })
   @IsNumber()
+  @IsPositive()
   interestRate: number;
 
   @ApiProperty({
@@ -19,10 +21,12 @@ export class CashDepositDto {
     example: 12,
   })
   @IsNumber()
+  @IsPositive()
   investmentTermMonths: number;
 
   @ApiProperty({ description: 'The amount of extra deposits', example: 100 })
   @IsNumber()
+  @IsPositive()
   extraDepositAmount: number;
 
   @ApiProperty({
