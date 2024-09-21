@@ -25,6 +25,29 @@ const { data, isFetching, error, execute } = useApiClient<CalculateCashResponse>
   )
   .json()
 
+const handleIncreaseInterestRate = () => {
+  if (interestRate.value === 100) return
+
+  interestRate.value = +(interestRate.value + 0.1).toFixed(2)
+}
+
+const handleDecreaseInterestRate = () => {
+  if (interestRate.value === 0) return
+
+  interestRate.value = +(interestRate.value - 0.1).toFixed(2)
+}
+
+const handleManualSetInterestRate = (e: Event) => {
+  const { value } = e.target as HTMLInputElement
+  if (Number(value) > 100) {
+    interestRate.value = 100
+  } else if (Number(value) < 0) {
+    interestRate.value = 0
+  } else {
+    interestRate.value = Number(value)
+  }
+}
+
 const finalBalance = computed(() => data.value?.finalBalance)
 const totalInterestEarned = computed(() => data.value?.totalInterestEarned)
 const totalExtraDeposits = computed(() => data.value?.totalExtraDeposits)
@@ -41,9 +64,17 @@ const totalExtraDeposits = computed(() => data.value?.totalExtraDeposits)
 
     <div class="input-group">
       <label for="interestRate">Interest Rate (%):</label>
-      <input type="number" id="interestRate" v-model="interestRate" min="0" step="0.01" />
-      <button @click="interestRate += 0.1">+</button>
-      <button @click="interestRate -= 0.1">-</button>
+      <input
+        type="number"
+        id="interestRate"
+        v-model.number="interestRate"
+        min="0"
+        step="0.01"
+        max="100"
+        @input="handleManualSetInterestRate"
+      />
+      <button @click="handleIncreaseInterestRate">+</button>
+      <button @click="handleDecreaseInterestRate">-</button>
     </div>
 
     <div class="input-group">
