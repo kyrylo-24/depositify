@@ -16,7 +16,8 @@
       "persistent": true
     },
     "start:all": {
-      "dependsOn": ["^start:all"]
+      "dependsOn": ["^start:all"],
+      "cache": false
     }
   }
 }

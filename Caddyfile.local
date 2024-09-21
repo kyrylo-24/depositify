@@ -2,4 +2,8 @@
 	handle_path /api/calculations/* {
 		reverse_proxy host.docker.internal:4001
 	}
+
+	handle_path /* {
+		reverse_proxy host.docker.internal:3000
+	}
 }
