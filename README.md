@@ -1,81 +1,79 @@
-# Turborepo starter
+# Depositify
 
-This is an official starter Turborepo.
+This document contains information about the project structure, services, and how to run the project.
 
-## Using this example
+To read about the development approach, please refer to the [development approach](./docs/development-approach.md) document.
 
-Run the following command:
+## Overview
 
-```sh
-npx create-turbo@latest
-```
+Depositify is a modern banking platform that provides a range of services to its customers. The platform is built using a microservices architecture, with each service being responsible for a specific feature or functionality.
 
-## What's inside?
+## Project Structure
 
-This Turborepo includes the following packages/apps:
+Project is organized as a monorepo using Turborepo and npm workspaces.
 
-### Apps and Packages
+- `backend` - Contains all backend services
+- `frontend` - Contains all frontend applications
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## Services
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+- [Calculations Service](./backend/calculations-service/README.md) - The calculations service for Depositify
 
-### Utilities
+## Frontend
 
-This Turborepo has some additional tools already setup for you:
+- [Web](./frontend/web/README.md) - The web frontend for Depositify
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## Prerequisites
 
-### Build
+- Node.js (v22.9.0) - use Volta to select Node.js version
+- npm (v10.9.0)
+- Docker
+- Docker Compose
 
-To build all apps and packages, run the following command:
+## How to run (preffered)
 
-```
-cd my-turborepo
-pnpm build
-```
+Just run `docker compose up` to start calculations service, web frontend and Caddy.
 
-### Develop
+## Installation and running manually
 
-To develop all apps and packages, run the following command:
+You can install dependencies and run apps and services locally using the following commands:
 
-```
-cd my-turborepo
-pnpm dev
-```
+1. Install dependencies:
 
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+Local setup uses Caddy as a reverse proxy and a local .env file for environment variables.
+Caddy points to the local frontend and backend services from docker services. As I'm using Mac it points to `host.docker.internal`.
+Might be different for other operating systems.
 
 ```
-cd my-turborepo
-npx turbo login
+npm install
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+2. Run apps and services:
 
 ```
-npx turbo link
+npm run turbo start:all
 ```
 
-## Useful Links
+3. Run Caddy:
 
-Learn more about the power of Turborepo:
+```
+docker compose up -f docker-compose.local.yml -d
+```
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+## Applications
+
+Access the applications via the following URLs:
+
+- Web: http://localhost:3000
+- API: http://localhost:4000/api/calculations
+- Open API Docs: http://localhost:4000/api/calculations/docs
+
+## Tests
+
+You can find unit tests for calculations in `backend/calculations-service/src/calculators/calculators.service.spec.ts`.
+
+End to end tests for backend API you can find in `backend/calculations-service/src/deposits-savings-calculator/deposits-savings-calculator.controller.spec.ts`.
+
+Frontend unit tests you can find in `frontend/web/src/components/__tests__/Header.spec.ts`.
+
+Frontend end to end tests you can find in `frontend/web/e2e`.
