@@ -3,7 +3,8 @@
   "ui": "tui",
   "tasks": {
     "start:dev": {
-      "dependsOn": ["^start:dev"]
+      "dependsOn": ["^start:dev"],
+      "persistent": true
     },
     "build": {
       "dependsOn": ["^build"]
@@ -17,7 +18,13 @@
     },
     "start:all": {
       "dependsOn": ["^start:all"],
-      "cache": false
+      "cache": false,
+      "persistent": true
+    },
+    "start:prod": {
+      "dependsOn": ["^start:prod"],
+      "cache": false,
+      "persistent": true
     }
   }
 }

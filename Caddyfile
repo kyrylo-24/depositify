@@ -1,0 +1,9 @@
+:4000 {
+	handle_path /api/calculations/* {
+		reverse_proxy calculations-service:4001
+	}
+
+	handle_path /* {
+		reverse_proxy web:3000
+	}
+}

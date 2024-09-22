@@ -8,6 +8,7 @@
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "start:all": "vite dev --host",
+    "start:prod": "vite build && vite preview --port 3000 --host",
     "test:unit": "vitest",
     "test:e2e": "playwright test",
     "build-only": "vite build",
