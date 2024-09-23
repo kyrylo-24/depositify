@@ -2,6 +2,8 @@
 
 Back to [README](../README.md)
 
+> For this project, I've decided to focus on setting up frontend and backend apps in a monorepo structure with proxy server and dockerised setup. I've added a couple different tests to showcase different approaches to testing: unit and integration tests for backend, and unit and E2E tests for frontend.x
+
 ## 1. Project Structure
 
 Depositify is organized as a monorepo using Turborepo and npm workspaces. Why monorepo?
@@ -44,6 +46,8 @@ Angular - never used it commercially, so it would have pretty high learning curv
 **TypeScript** - typesafety still goes whroom!
 
 **Nest.js** - my go to Node.js framework, it's battle tested and has a huge community. Especially I like that it's opinionated and has a huge set of tools and plugins out of the box. No need to reinvent the wheel with another Express.js custom project architecture.
+
+**REST API** - I've been a fan of GraphQL for a while, but recently came to conclusion that for most of the projects REST API is more than enough. GraphQL is a great tool and provides quite a lot of cool features, but requires more overhead to setup and maintain. Also, it's very improtant that all devs on the project are familiar with it, which might not always be the case.
 
 ### Reverse Proxy
 
