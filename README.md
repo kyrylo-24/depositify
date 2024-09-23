@@ -64,7 +64,7 @@ docker compose up -f docker-compose.local.yml -d
 
 Access the applications via the following URLs:
 
-- Web: http://localhost:3000
+- Web: http://localhost:4000
 - API: http://localhost:4000/api/calculations
 - Open API Docs: http://localhost:4000/api/calculations/docs
 
