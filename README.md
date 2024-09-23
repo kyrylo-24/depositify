@@ -76,4 +76,4 @@ End to end tests for backend API you can find in `backend/calculations-service/s
 
 Frontend unit tests you can find in `frontend/web/src/components/__tests__/Header.spec.ts`.
 
-Frontend end to end tests you can find in `frontend/web/e2e`.
+~~Frontend end to end tests you can find in `frontend/web/e2e`.~~
