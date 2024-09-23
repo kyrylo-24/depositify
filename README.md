@@ -30,7 +30,9 @@ Project is organized as a monorepo using Turborepo and npm workspaces.
 - Docker
 - Docker Compose
 
-## How to run (preffered)
+## How to run (preferred)
+
+> I've added devcontainer, so running the app within it is possible. However, there's a problem with accessing the proxied Caddy port from the web app. Better to use locally running docker-compose.
 
 Just run `docker compose up` to start calculations service, web frontend and Caddy.
 
