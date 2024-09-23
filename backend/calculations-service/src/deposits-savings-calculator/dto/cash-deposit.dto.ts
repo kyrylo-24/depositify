@@ -1,4 +1,4 @@
-import { IsNumber, IsEnum, IsPositive } from 'class-validator';
+import { IsNumber, IsEnum, IsPositive, Min } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { ExtraDepositFrequency } from 'src/common/types/calculations.types';
 
@@ -26,7 +26,7 @@ export class CashDepositDto {
 
   @ApiProperty({ description: 'The amount of extra deposits', example: 100 })
   @IsNumber()
-  @IsPositive()
+  @Min(0)
   extraDepositAmount: number;
 
   @ApiProperty({
